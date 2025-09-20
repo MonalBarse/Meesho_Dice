@@ -1,0 +1,35 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id                Int                @id @default(autoincrement())
+  email             String             @unique
+  name              String?
+  measurements      UserMeasurements?
+  createdAt         DateTime           @default(now())
+}
+
+model UserMeasurements {
+  id        Int    @id @default(autoincrement())
+  userId    Int    @unique
+  bust      Float
+  waist     Float
+  hip       Float
+
+  user      User   @relation(fields: [userId], references: [id])
+}
+
+model Products {
+  id           Int     @id @default(autoincrement())
+  name         String
+  fitCategory  String   // e.g. "Regular", "Slim", "Loose"
+  chest        Float
+  waist        Float
+  hip          Float
+}

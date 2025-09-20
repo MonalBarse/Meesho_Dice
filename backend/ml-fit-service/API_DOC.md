@@ -160,28 +160,4 @@ if __name__ == "__main__":
         # Now you can use this result to display a message on the frontend.
 ```
 
----
 
-### ## Step 3: Commit and Push to GitHub
-
-You're all set. The code is organized, and the documentation is written. The final step is to add these changes to your GitHub repository.
-
-1.  **Navigate to the root of your project folder** (the one with `.git`).
-2.  **Add all your changes:**
-    ```bash
-    git add .
-    ```
-3.  **Commit the changes with a clear message:**
-    ```bash
-    git commit -m "feat: Add scalable ML fit prediction service and documentation"
-    ```
-4.  **Push the changes to your repository:**
-    ```bash
-    git push
-    ```
-
-You have now successfully integrated the ML service into your project and provided excellent documentation for your team.
-
-```
-
-```

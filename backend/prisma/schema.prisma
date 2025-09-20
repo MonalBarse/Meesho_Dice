@@ -6,21 +6,48 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
 model User {
-  id        Int      @id @default(autoincrement())
-  email     String   @unique
-  name      String?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id           Int               @id @default(autoincrement())
+  email        String            @unique
+  name         String?
+  createdAt    DateTime          @default(now())
+  updatedAt    DateTime          @updatedAt
+  measurements UserMeasurement[]
 }
 
 model Product {
-  id        Int              @id @default(autoincrement())
-  name      String
-  category  String
-  createdAt DateTime         @default(now())
+  id               Int                  @id @default(autoincrement())
+  name             String
+  category         String
+  createdAt        DateTime             @default(now())
+  measurements     ProductMeasurement[]
+  certaintyScores  CertaintyScore[]
+}
 
-  certaintyScores CertaintyScore[]
+model UserMeasurement {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  height    Float
+  bust      Float?
+  waist     Float?
+  hip       Float?
+  inseam    Float?
+  createdAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id])
+}
+
+model ProductMeasurement {
+  id        Int      @id @default(autoincrement())
+  productId Int
+  bust      Float?
+  waist     Float?
+  hip       Float?
+  length    Float?
+  createdAt DateTime @default(now())
+
+  product Product @relation(fields: [productId], references: [id])
 }
 
 model CertaintyScore {
@@ -29,5 +56,5 @@ model CertaintyScore {
   score     Float
   createdAt DateTime @default(now())
 
-  product   Product @relation(fields: [productId], references: [id])
+  product Product @relation(fields: [productId], references: [id])
 }

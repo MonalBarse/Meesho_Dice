@@ -10,8 +10,9 @@ from pydantic import BaseModel, Field
 
 # Initialize the FastAPI app
 app = FastAPI(
-    title="Meesho Scalable Fit Prediction API",
-    description="An API that predicts clothing fit based on user and product measurements."
+    title="Meesho Smart Fit Prediction API",
+    description="An intelligent API that predicts clothing fit based on user and product measurements, helping reduce return rates and boost customer confidence.",
+    version="1.0.0"
 )
 
 # Load all trained models from the 'models' directory into a dictionary on startup
